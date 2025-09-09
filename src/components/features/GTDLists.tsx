@@ -205,7 +205,7 @@ export function GTDLists({
           </div>
           
           <Badge 
-            variant="primary"
+            variant="default"
             size={adhdMode ? 'lg' : 'md'}
             className="ml-auto"
           >
