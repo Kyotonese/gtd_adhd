@@ -164,7 +164,7 @@ export function TaskForm({ task, onSave, onCancel, adhdMode = false }: TaskFormP
                       checked={formData.difficulty === option.value}
                       onChange={(e) => setFormData(prev => ({ 
                         ...prev, 
-                        difficulty: parseInt(e.target.value) 
+                        difficulty: parseInt(e.target.value) as 1 | 2 | 3 | 4 | 5
                       }))}
                       className="mr-3"
                     />
