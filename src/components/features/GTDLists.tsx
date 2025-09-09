@@ -130,7 +130,7 @@ export function GTDLists({
 
               <div className="flex items-center justify-between">
                 <Badge 
-                  variant={taskCount > 0 ? 'primary' : 'secondary'}
+                  variant={taskCount > 0 ? 'default' : 'secondary'}
                   size={adhdMode ? 'lg' : 'md'}
                 >
                   {taskCount} 件
