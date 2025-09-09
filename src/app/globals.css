@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  .dark body {
+    @apply bg-gray-900 text-gray-100;
+  }
+}
+
+/* ADHD-friendly styles */
+@layer components {
+  .adhd-button {
+    @apply px-6 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-opacity-50;
+  }
+  
+  .adhd-input {
+    @apply px-4 py-3 text-base border-2 rounded-lg focus:outline-none focus:ring-4 focus:ring-opacity-50 transition-all duration-200;
+  }
+  
+  .adhd-card {
+    @apply p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 border border-gray-200 dark:border-gray-700;
+  }
+  
+  .task-difficulty-1 {
+    @apply bg-green-50 border-green-200 dark:bg-green-900/20 dark:border-green-800;
+  }
+  
+  .task-difficulty-2 {
+    @apply bg-blue-50 border-blue-200 dark:bg-blue-900/20 dark:border-blue-800;
+  }
+  
+  .task-difficulty-3 {
+    @apply bg-yellow-50 border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-800;
+  }
+  
+  .task-difficulty-4 {
+    @apply bg-orange-50 border-orange-200 dark:bg-orange-900/20 dark:border-orange-800;
+  }
+  
+  .task-difficulty-5 {
+    @apply bg-red-50 border-red-200 dark:bg-red-900/20 dark:border-red-800;
+  }
+}
