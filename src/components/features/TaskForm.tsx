@@ -265,7 +265,7 @@ export function TaskForm({ task, onSave, onCancel, adhdMode = false }: TaskFormP
                 </label>
                 <select
                   value={formData.energyLevel}
-                  onChange={(e) => setFormData(prev => ({ ...prev, energyLevel: e.target.value }))}
+                  onChange={(e) => setFormData(prev => ({ ...prev, energyLevel: e.target.value as "low" | "medium" | "high" }))}
                   className={cn(
                     'w-full border border-gray-300 rounded-md shadow-sm',
                     'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500',
