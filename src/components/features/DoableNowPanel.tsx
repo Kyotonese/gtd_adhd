@@ -13,6 +13,7 @@ interface DoableNowPanelProps {
   onCompleteTask: (id: string) => void;
   onEditTask: (task: Task) => void;
   onDeleteTask: (id: string) => void;
+  onStartPomodoro?: (taskId: string, taskTitle: string) => void;
   adhdMode?: boolean;
 }
 
@@ -23,6 +24,7 @@ export function DoableNowPanel({
   onCompleteTask,
   onEditTask,
   onDeleteTask,
+  onStartPomodoro,
   adhdMode = false,
 }: DoableNowPanelProps) {
   const updateMood = (mood: 'low' | 'medium' | 'high') => {
@@ -215,6 +217,7 @@ export function DoableNowPanel({
                     onComplete={onCompleteTask}
                     onEdit={onEditTask}
                     onDelete={onDeleteTask}
+                    onStartPomodoro={onStartPomodoro}
                     adhdMode={adhdMode}
                   />
                 ))}

@@ -13,6 +13,8 @@ import { GTDLists } from '@/components/features/GTDLists';
 import { ProgressPanel } from '@/components/features/ProgressPanel';
 import { TaskDecomposition } from '@/components/features/TaskDecomposition';
 import { CompletedTasks } from '@/components/features/CompletedTasks';
+import { PomodoroTimer } from '@/components/features/PomodoroTimer';
+import { PomodoroStats } from '@/components/features/PomodoroStats';
 import { Button } from '@/components/ui/Button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
@@ -26,6 +28,7 @@ export default function HomePage() {
   const [showTaskForm, setShowTaskForm] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | undefined>(undefined);
   const [decomposingTask, setDecomposingTask] = useState<Task | undefined>(undefined);
+  const [selectedTask, setSelectedTask] = useState<{id: string, title: string} | null>(null);
 
   const {
     tasks,
@@ -84,6 +87,11 @@ export default function HomePage() {
 
   const handleCloseDecomposition = () => {
     setDecomposingTask(undefined);
+  };
+
+  const handleStartPomodoro = (taskId: string, taskTitle: string) => {
+    setSelectedTask({ id: taskId, title: taskTitle });
+    setActiveView('pomodoro');
   };
 
   const taskCounts = {
@@ -240,6 +248,7 @@ export default function HomePage() {
                     onEdit={handleEditTask}
                     onDelete={deleteTask}
                     onDecompose={handleDecomposeTask}
+                    onStartPomodoro={handleStartPomodoro}
                     adhdMode={adhdMode}
                   />
                 );
@@ -304,6 +313,23 @@ export default function HomePage() {
           {/* ビュー別コンテンツ */}
           {activeView === 'dashboard' && renderDashboard()}
           
+          {activeView === 'pomodoro' && (
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <PomodoroTimer
+                  taskId={selectedTask?.id}
+                  taskTitle={selectedTask?.title}
+                  adhdMode={adhdMode}
+                  className="w-full"
+                />
+                <PomodoroStats
+                  adhdMode={adhdMode}
+                  className="w-full"
+                />
+              </div>
+            </div>
+          )}
+          
           {activeView === 'doable-now' && (
             <DoableNowPanel
               doableTasks={doableTasks}
@@ -312,6 +338,7 @@ export default function HomePage() {
               onCompleteTask={completeTask}
               onEditTask={handleEditTask}
               onDeleteTask={deleteTask}
+              onStartPomodoro={handleStartPomodoro}
               adhdMode={adhdMode}
             />
           )}

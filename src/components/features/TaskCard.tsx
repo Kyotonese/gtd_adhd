@@ -11,6 +11,7 @@ interface TaskCardProps {
   onEdit: (task: Task) => void;
   onDelete: (id: string) => void;
   onDecompose?: (task: Task) => void;
+  onStartPomodoro?: (taskId: string, taskTitle: string) => void;
   subtasks?: Task[];
   adhdMode?: boolean;
 }
@@ -21,6 +22,7 @@ export function TaskCard({
   onEdit, 
   onDelete, 
   onDecompose,
+  onStartPomodoro,
   subtasks = [],
   adhdMode = false 
 }: TaskCardProps) {
@@ -196,6 +198,22 @@ export function TaskCard({
           >
             ✅ 完了
           </Button>
+          
+          {/* ポモドーロ開始ボタン */}
+          {onStartPomodoro && (
+            <Button
+              variant="primary"
+              size={adhdMode ? 'lg' : 'md'}
+              adhdMode={adhdMode}
+              onClick={(e) => {
+                e.stopPropagation();
+                onStartPomodoro(task.id, task.title);
+              }}
+              className={adhdMode ? '' : 'px-3'}
+            >
+              🍅 集中
+            </Button>
+          )}
           
           {/* タスク分解ボタン */}
           {onDecompose && (task.level === 'large' || task.level === 'medium') && !task.isDecomposed && (

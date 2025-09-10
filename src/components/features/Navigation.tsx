@@ -26,6 +26,12 @@ const navigationItems = [
     description: 'メイン画面',
   },
   {
+    id: 'pomodoro',
+    label: 'ポモドーロ',
+    icon: '🍅',
+    description: '集中タイマー',
+  },
+  {
     id: 'doable-now',
     label: '今すぐできる',
     icon: '⚡',
