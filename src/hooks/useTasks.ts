@@ -42,7 +42,11 @@ export function useTasks() {
           setTasks(parsedTasks);
         } catch (error) {
           console.error('Failed to parse saved tasks:', error);
+          setTasks([]);
         }
+      } else {
+        // ユーザーのタスクデータがない場合は空配列で初期化
+        setTasks([]);
       }
     }
 
@@ -61,21 +65,21 @@ export function useTasks() {
     updateLastActiveTime();
   }, [user, getUserDataKey, updateLastActiveTime]);
 
-  // ユーザー別にタスクをローカルストレージに保存
+  // ユーザー別にタスクをローカルストレージに保存（ユーザーがログインしている時のみ）
   useEffect(() => {
     const tasksKey = getUserDataKey('tasks');
-    if (tasksKey && tasks.length >= 0) {
+    if (tasksKey && user) {
       localStorage.setItem(tasksKey, JSON.stringify(tasks));
     }
-  }, [tasks, getUserDataKey]);
+  }, [tasks, getUserDataKey, user]);
 
-  // ユーザー別にユーザー状態をローカルストレージに保存
+  // ユーザー別にユーザー状態をローカルストレージに保存（ユーザーがログインしている時のみ）
   useEffect(() => {
     const userStateKey = getUserDataKey('user-state');
-    if (userStateKey) {
+    if (userStateKey && user) {
       localStorage.setItem(userStateKey, JSON.stringify(userState));
     }
-  }, [userState, getUserDataKey]);
+  }, [userState, getUserDataKey, user]);
 
   const addTask = useCallback((taskData: Partial<Task>) => {
     const newTask: Task = {
