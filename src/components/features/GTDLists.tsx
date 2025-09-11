@@ -12,6 +12,8 @@ interface GTDListsProps {
   onEditTask: (task: Task) => void;
   onDeleteTask: (id: string) => void;
   onDecomposeTask?: (task: Task) => void;
+  onAddTask?: (category: GTDCategory) => void;
+  onStartPomodoro?: (taskId: string, taskTitle: string) => void;
   adhdMode?: boolean;
 }
 
@@ -81,11 +83,14 @@ export function GTDLists({
   onEditTask, 
   onDeleteTask, 
   onDecomposeTask,
+  onAddTask,
+  onStartPomodoro,
   adhdMode = false 
 }: GTDListsProps) {
   const [selectedCategory, setSelectedCategory] = useState<GTDCategory | null>(null);
 
   const getTasksByCategory = (category: GTDCategory) => {
+    console.log(`Getting tasks for category ${category}:`, tasks.filter(task => task.category === category && task.status !== "completed"));
     return tasks.filter(task => task.category === category && task.status !== 'completed');
   };
 

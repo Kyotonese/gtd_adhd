@@ -82,6 +82,7 @@ export function useTasks() {
   }, [userState, getUserDataKey, user]);
 
   const addTask = useCallback((taskData: Partial<Task>) => {
+    console.log("addTask called with:", taskData);
     const newTask: Task = {
       id: generateId(),
       title: taskData.title || '',
@@ -103,6 +104,7 @@ export function useTasks() {
     };
 
     setTasks(prev => [...prev, newTask]);
+    console.log("Task added to state, new tasks array length:", tasks.length + 1);
     return newTask;
   }, []);
 
@@ -160,15 +162,7 @@ export function useTasks() {
     setUserState(prev => ({ ...prev, ...updates }));
   }, []);
 
-  const quickCapture = useCallback((text: string) => {
-    return addTask({
-      title: text,
-      category: 'capture',
-      difficulty: 1,
-      energyLevel: 'low',
-      level: 'medium',
-    });
-  }, [addTask]);
+const quickCapture = useCallback((text: string) => {    console.log("QuickCapture: Adding new task with text:", text);    const newTask = addTask({      title: text,      category: "capture",      difficulty: 1,      energyLevel: "low",      level: "medium",    });    console.log("QuickCapture: Task added successfully:", newTask);    return newTask;  }, [addTask]);
 
   const createSubtask = useCallback((parentId: string, subtaskData: Partial<Task>) => {
     const subtask: Task = {
