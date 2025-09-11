@@ -90,7 +90,6 @@ export function GTDLists({
   const [selectedCategory, setSelectedCategory] = useState<GTDCategory | null>(null);
 
   const getTasksByCategory = (category: GTDCategory) => {
-    console.log(`Getting tasks for category ${category}:`, tasks.filter(task => task.category === category && task.status !== "completed"));
     return tasks.filter(task => task.category === category && task.status !== 'completed');
   };
 
@@ -225,18 +224,6 @@ export function GTDLists({
           <Badge 
             variant="default"
             size={adhdMode ? 'lg' : 'md'}
-            className="ml-auto"
-          {onAddTask && (
-            <Button
-              variant="primary"
-              size={adhdMode ? "lg" : "md"}
-              adhdMode={adhdMode}
-              onClick={() => onAddTask(category)}
-              className="ml-2"
-            >
-              ➕ タスクを追加
-            </Button>
-          )}
           >
             {listTasks.length} 件
           </Badge>
