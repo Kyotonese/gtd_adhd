@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Task } from '@/types';
+import { Task, GTDCategory } from '@/types';
 import { useTasks } from '@/hooks/useTasks';
 import { useAuth } from '@/hooks/useAuth';
 import { Navigation } from '@/components/features/Navigation';
@@ -90,8 +90,104 @@ export default function HomePage() {
   };
 
   const handleStartPomodoro = (taskId: string, taskTitle: string) => {
+
+  const handleAddTaskToCategory = (category: GTDCategory) => {
+    const categoryDefaults = {
+      capture: { difficulty: 1 as const, energyLevel: "low" as const, level: "small" as const },
+      next_actions: { difficulty: 2 as const, energyLevel: "medium" as const, level: "medium" as const },
+      projects: { difficulty: 4 as const, energyLevel: "high" as const, level: "large" as const },
+      waiting_for: { difficulty: 1 as const, energyLevel: "low" as const, level: "small" as const },
+      someday_maybe: { difficulty: 3 as const, energyLevel: "medium" as const, level: "medium" as const },
+      calendar: { difficulty: 2 as const, energyLevel: "medium" as const, level: "medium" as const },
+      reference: { difficulty: 1 as const, energyLevel: "low" as const, level: "small" as const },
+    };
+
+    const defaults = categoryDefaults[category];
+    const newTask = addTask({
+      title: "新しいタスク",
+      category,
+      difficulty: defaults.difficulty,
+      energyLevel: defaults.energyLevel,
+      level: defaults.level,
+    });
+    
+    setEditingTask(newTask);
+    setShowTaskForm(true);
+  };
     setSelectedTask({ id: taskId, title: taskTitle });
+
+  const handleAddTaskToCategory = (category: GTDCategory) => {
+    const categoryDefaults = {
+      capture: { difficulty: 1 as const, energyLevel: "low" as const, level: "small" as const },
+      next_actions: { difficulty: 2 as const, energyLevel: "medium" as const, level: "medium" as const },
+      projects: { difficulty: 4 as const, energyLevel: "high" as const, level: "large" as const },
+      waiting_for: { difficulty: 1 as const, energyLevel: "low" as const, level: "small" as const },
+      someday_maybe: { difficulty: 3 as const, energyLevel: "medium" as const, level: "medium" as const },
+      calendar: { difficulty: 2 as const, energyLevel: "medium" as const, level: "medium" as const },
+      reference: { difficulty: 1 as const, energyLevel: "low" as const, level: "small" as const },
+    };
+
+    const defaults = categoryDefaults[category];
+    const newTask = addTask({
+      title: "新しいタスク",
+      category,
+      difficulty: defaults.difficulty,
+      energyLevel: defaults.energyLevel,
+      level: defaults.level,
+    });
+    
+    setEditingTask(newTask);
+    setShowTaskForm(true);
+  };
     setActiveView('pomodoro');
+
+  const handleAddTaskToCategory = (category: GTDCategory) => {
+    const categoryDefaults = {
+      capture: { difficulty: 1 as const, energyLevel: "low" as const, level: "small" as const },
+      next_actions: { difficulty: 2 as const, energyLevel: "medium" as const, level: "medium" as const },
+      projects: { difficulty: 4 as const, energyLevel: "high" as const, level: "large" as const },
+      waiting_for: { difficulty: 1 as const, energyLevel: "low" as const, level: "small" as const },
+      someday_maybe: { difficulty: 3 as const, energyLevel: "medium" as const, level: "medium" as const },
+      calendar: { difficulty: 2 as const, energyLevel: "medium" as const, level: "medium" as const },
+      reference: { difficulty: 1 as const, energyLevel: "low" as const, level: "small" as const },
+    };
+
+    const defaults = categoryDefaults[category];
+    const newTask = addTask({
+      title: "新しいタスク",
+      category,
+      difficulty: defaults.difficulty,
+      energyLevel: defaults.energyLevel,
+      level: defaults.level,
+    });
+    
+    setEditingTask(newTask);
+    setShowTaskForm(true);
+  };
+  };
+
+  const handleAddTaskToCategory = (category: GTDCategory) => {
+    const categoryDefaults = {
+      capture: { difficulty: 1 as const, energyLevel: "low" as const, level: "small" as const },
+      next_actions: { difficulty: 2 as const, energyLevel: "medium" as const, level: "medium" as const },
+      projects: { difficulty: 4 as const, energyLevel: "high" as const, level: "large" as const },
+      waiting_for: { difficulty: 1 as const, energyLevel: "low" as const, level: "small" as const },
+      someday_maybe: { difficulty: 3 as const, energyLevel: "medium" as const, level: "medium" as const },
+      calendar: { difficulty: 2 as const, energyLevel: "medium" as const, level: "medium" as const },
+      reference: { difficulty: 1 as const, energyLevel: "low" as const, level: "small" as const },
+    };
+
+    const defaults = categoryDefaults[category];
+    const newTask = addTask({
+      title: "新しいタスク",
+      category,
+      difficulty: defaults.difficulty,
+      energyLevel: defaults.energyLevel,
+      level: defaults.level,
+    });
+    
+    setEditingTask(newTask);
+    setShowTaskForm(true);
   };
 
   const taskCounts = {
@@ -350,6 +446,7 @@ export default function HomePage() {
               onEditTask={handleEditTask}
               onDeleteTask={deleteTask}
               onDecomposeTask={handleDecomposeTask}
+              onAddTask={handleAddTaskToCategory}
               adhdMode={adhdMode}
             />
           )}

@@ -147,6 +147,19 @@ export function GTDLists({
                     size={adhdMode ? 'lg' : 'sm'}
                     adhdMode={adhdMode}
                   >
+                {onAddTask && (
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onAddTask(list.category);
+                    }}
+                    className="mr-2"
+                  >
+                    ➕ 追加
+                  </Button>
+                )}
                     詳細を見る →
                   </Button>
                 )}
@@ -213,6 +226,17 @@ export function GTDLists({
             variant="default"
             size={adhdMode ? 'lg' : 'md'}
             className="ml-auto"
+          {onAddTask && (
+            <Button
+              variant="primary"
+              size={adhdMode ? "lg" : "md"}
+              adhdMode={adhdMode}
+              onClick={() => onAddTask(category)}
+              className="ml-2"
+            >
+              ➕ タスクを追加
+            </Button>
+          )}
           >
             {listTasks.length} 件
           </Badge>
