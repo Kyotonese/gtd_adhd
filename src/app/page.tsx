@@ -52,8 +52,6 @@ export default function HomePage() {
   const todaysTasks = getTodaysTasks();
   const completedTasks = getCompletedTasks();
   const tasksWithSubtasks = getTasksWithSubtasks();
-  console.log("Page: Current tasks state:", tasks);
-  console.log("Page: Tasks with subtasks:", tasksWithSubtasks);
 
   const handleQuickCapture = (text: string) => {
     quickCapture(text);

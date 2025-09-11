@@ -82,7 +82,6 @@ export function useTasks() {
   }, [userState, getUserDataKey, user]);
 
   const addTask = useCallback((taskData: Partial<Task>) => {
-    console.log("addTask called with:", taskData);
     const newTask: Task = {
       id: generateId(),
       title: taskData.title || '',
@@ -104,9 +103,8 @@ export function useTasks() {
     };
 
     setTasks(prev => [...prev, newTask]);
-    console.log("Task added to state, new tasks array length:", tasks.length + 1);
     return newTask;
-  }, []);
+  }, [user]);
 
   const updateTask = useCallback((id: string, updates: Partial<Task>) => {
     setTasks(prev => prev.map(task => 
@@ -163,7 +161,6 @@ export function useTasks() {
   }, []);
 
   const quickCapture = useCallback((text: string) => {
-    console.log("QuickCapture: Adding new task with text:", text);
     const newTask = addTask({
       title: text,
       category: "capture",
@@ -171,7 +168,6 @@ export function useTasks() {
       energyLevel: "low",
       level: "medium",
     });
-    console.log("QuickCapture: Task added successfully:", newTask);
     return newTask;
   }, [addTask]);
 
