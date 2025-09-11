@@ -90,6 +90,7 @@ export function GTDLists({
   const [selectedCategory, setSelectedCategory] = useState<GTDCategory | null>(null);
 
   const getTasksByCategory = (category: GTDCategory) => {
+    console.log(`GTDLists: Getting tasks for category ${category}:`, tasks.filter(task => task.category === category && task.status !== "completed"));
     return tasks.filter(task => task.category === category && task.status !== 'completed');
   };
 

@@ -162,7 +162,18 @@ export function useTasks() {
     setUserState(prev => ({ ...prev, ...updates }));
   }, []);
 
-const quickCapture = useCallback((text: string) => {    console.log("QuickCapture: Adding new task with text:", text);    const newTask = addTask({      title: text,      category: "capture",      difficulty: 1,      energyLevel: "low",      level: "medium",    });    console.log("QuickCapture: Task added successfully:", newTask);    return newTask;  }, [addTask]);
+  const quickCapture = useCallback((text: string) => {
+    console.log("QuickCapture: Adding new task with text:", text);
+    const newTask = addTask({
+      title: text,
+      category: "capture",
+      difficulty: 1,
+      energyLevel: "low",
+      level: "medium",
+    });
+    console.log("QuickCapture: Task added successfully:", newTask);
+    return newTask;
+  }, [addTask]);
 
   const createSubtask = useCallback((parentId: string, subtaskData: Partial<Task>) => {
     const subtask: Task = {
